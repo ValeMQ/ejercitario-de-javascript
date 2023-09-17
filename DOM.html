@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio Eventos</title>
+    <style>
+        body {
+            background-image: url('default.jpg');
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+        button {
+            margin-bottom: 10px;
+        }
+        #miDiv {
+            width: 300px;
+            height: 100px;
+            border: 1px solid black;
+            margin: auto;
+            text-align: center;
+            line-height: 100px;
+            font-size: 20px;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <button id="miBoton">Haz clic</button>
+    <div id="miDiv"></div>
+
+    <script>
+        function agregarMensaje() {
+            const div = document.getElementById('miDiv');
+            div.textContent = '¡Mensaje agregado!';
+        }
+
+        function cambiarColorFondo(event) {
+            const div = document.getElementById('miDiv');
+            div.style.backgroundColor = 'red';
+        }
+
+        function cambiarTamanioFuente(event) {
+            const div = document.getElementById('miDiv');
+            const size = parseInt(window.getComputedStyle(div).fontSize);
+            if (event.key === 'ArrowUp') {
+                div.style.fontSize = (size + 2) + 'px';
+            } else if (event.key === 'ArrowDown') {
+                div.style.fontSize = (size - 2) + 'px';
+            }
+        }
+
+        function cambiarContenido() {
+            const div = document.getElementById('miDiv');
+            div.textContent = '¡Nuevo Contenido!';
+        }
+
+        function cambiarImagenFondo() {
+            document.body.style.backgroundImage = "url('nuevaImagen.jpg')";
+        }
+
+        const miBoton = document.getElementById('miBoton');
+        const miDiv = document.getElementById('miDiv');
+
+        miBoton.addEventListener('click', agregarMensaje);
+        miDiv.addEventListener('mouseover', cambiarColorFondo);
+        miDiv.addEventListener('keydown', cambiarTamanioFuente);
+        miDiv.addEventListener('dblclick', cambiarContenido);
+        document.addEventListener('DOMContentLoaded', cambiarImagenFondo);
+    </script>
+</body>
+</html>
